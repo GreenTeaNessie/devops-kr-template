@@ -1,10 +1,9 @@
 # validator.py
-def validate_email(email: str) -> bool:
-    """Валидация email-адреса."""
+def validate_phone(phone: str) -> bool:
+    """Валидация российского номера."""
     import re
-    pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-    return bool(re.match(pattern, email))
-
+    pattern = r'^\+?7\d{10}$'
+    return bool(re.match(pattern, phone.replace('-', '').replace(' ', '')))
 
 def validate_snils(snils: str) -> bool:
     """Валидация СНИЛС (Страховой номер индивидуального лицевого счёта).
@@ -37,3 +36,9 @@ def validate_snils(snils: str) -> bool:
         expected = calculated % 101
     
     return expected == check_sum
+
+def validate_email(email: str) -> bool:
+    """Валидация email-адреса."""
+    import re
+    pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    return bool(re.match(pattern, email))
